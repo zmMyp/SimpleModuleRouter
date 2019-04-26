@@ -39,36 +39,7 @@ public class SmrApplication {
     }
 
 
-    /*启动应用（全局只启动一个）*/
-    public static  void loadModules(Application application) {
-        globalApplication=application;
-        try {
-            final String dir = "smr";
-            AssetManager am = application.getAssets();
-            String[] list = am.list(dir);
-
-            for (String uri : list) {
-
-                //通过配置文件加载组件
-                try {
-                    Properties prop = new Properties();
-                    prop.load(am.open(dir + "/" + uri));
-                    String modulePackageName = prop.getProperty("smr.module");
-
-                    if (TextUtils.isEmpty(modulePackageName) == false) {
-                        SmrModule smrModule = (SmrModule)Class.forName(modulePackageName).newInstance();
-                        smrModule.register(getGlobalSmrApp());
-                    }
-                }catch (Exception ex){
-                    ex.printStackTrace();
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static  void loadModulesByReflect(Application application){
+    public static  void loadModules(Application application){
         globalApplication=application;
         try {
 

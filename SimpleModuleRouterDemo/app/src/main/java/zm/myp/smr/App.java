@@ -15,8 +15,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
         //启动加载组件
-        SmrApplication.loadModulesByReflect(this);
+        SmrApplication.loadModules(this);
     }
 }
