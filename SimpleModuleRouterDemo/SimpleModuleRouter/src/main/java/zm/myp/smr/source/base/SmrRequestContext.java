@@ -1,7 +1,13 @@
 package zm.myp.smr.source.base;
 
+
+
+import android.content.Context;
+
 import java.io.Serializable;
 import java.util.Map;
+
+import zm.myp.smr.source.SmrParamstBody;
 
 /**
  * Created by qianjian on 2019/4/25.
@@ -9,11 +15,11 @@ import java.util.Map;
 
 public class SmrRequestContext implements Serializable {
 
-    private Object requester;
+    private transient Object requester;
     private String url;
-    private Map<String,Object> params;
+    private SmrParamstBody params;
 
-    public SmrRequestContext(Object requester, String url, Map<String, Object> params) {
+    public SmrRequestContext(Object requester, String url,SmrParamstBody params) {
         this.requester = requester;
         this.url = url;
         this.params = params;
@@ -35,11 +41,11 @@ public class SmrRequestContext implements Serializable {
         this.url = url;
     }
 
-    public Map<String, Object> getParams() {
+    public SmrParamstBody getParams() {
         return params;
     }
 
-    public void setParams(Map<String, Object> params) {
+    public void setParams(SmrParamstBody params) {
         this.params = params;
     }
 
@@ -49,7 +55,7 @@ public class SmrRequestContext implements Serializable {
      * @param data
      * @throws Exception
      */
-    public void responseCall(Object data) throws Exception {
+    public void responseCall(Object data)  {
 
 
         try {

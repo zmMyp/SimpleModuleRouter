@@ -1,7 +1,6 @@
 package zm.myp.smr.source;
 
 import android.app.Application;
-import android.content.Context;
 import android.content.res.AssetManager;
 import android.text.TextUtils;
 

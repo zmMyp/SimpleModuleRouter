@@ -1,5 +1,7 @@
 package zm.myp.smr.source;
 
+import android.util.Log;
+
 import java.util.Map;
 
 import zm.myp.smr.source.base.SmrRequestContext;
@@ -18,7 +20,7 @@ public class SmrRequestClient {
         call(requester,url,null,null);
     }
 
-    public final static void call(Object requester, String url, Map<String, Object> params) {
+    public final static void call(Object requester, String url,SmrParamstBody params) {
 
         call(requester,url,params,null);
     }
@@ -27,7 +29,7 @@ public class SmrRequestClient {
         call(requester,url,null,smrResponse);
     }
 
-    public final static void call(Object requester, String url, Map<String, Object> params, SmrResponseCallBack smrResponse) {
+    public final static void call(Object requester, String url, SmrParamstBody params, SmrResponseCallBack smrResponse) {
 
         SmrRequestContext smrRequestContext = new SmrRequestContext(requester, url,params);
         if(smrResponse!=null){
@@ -35,8 +37,8 @@ public class SmrRequestClient {
         }
         try {
             SmrApplication.getGlobalSmrApp().callFunction(smrRequestContext);
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (Exception e) {
+            Log.v("smr1","error->"+e.getMessage());
         }
     }
 }
