@@ -5,6 +5,8 @@ import android.content.res.AssetManager;
 import android.text.TextUtils;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import zm.myp.smr.source.base.SmrHandler;
@@ -21,6 +23,7 @@ public class SmrApplication {
     public   static Application globalApplication;
     private static SmrApplication globalSmrApp;
 
+    public List<SmrModule> smrModuleList=new ArrayList<>();
     private SmrApplication(){
 
         smrHandlerSmrRouterCache=new SmrRouterCache<SmrHandler>();
@@ -62,6 +65,20 @@ public class SmrApplication {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static  void loadModulesByReflect(Application application){
+        globalApplication=application;
+        try {
+
+            List<String> modules=(List<String>)Class.forName("zm.myp.smr.source.SmrApplication_Helper").getDeclaredMethod("loadModules").invoke(null);
+            for (String modulepath:modules){
+                    SmrModule smrModule = (SmrModule)Class.forName(modulepath).newInstance();
+                    smrModule.register(getGlobalSmrApp());
+            }
+        } catch (Exception e) {
+
         }
     }
 

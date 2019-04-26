@@ -1,1 +1,1 @@
-include ':app', ':SimpleModuleRouter', ':Module1', ':Module2'
+include ':app', ':SimpleModuleRouter', ':Module1', ':Module2', ':SimpleModuleRouter-compiler', ':SimpleModuleRouter-annotations'

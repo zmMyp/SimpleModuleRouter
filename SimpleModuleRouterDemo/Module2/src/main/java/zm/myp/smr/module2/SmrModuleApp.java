@@ -12,7 +12,6 @@ import zm.myp.smr.source.base.SmrRequestContext;
 
 public class SmrModuleApp implements SmrModule {
 
-
     @Override
     public void register(SmrApplication app) {
 
