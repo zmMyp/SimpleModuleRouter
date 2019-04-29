@@ -12,57 +12,55 @@ import java.util.regex.Pattern;
 
 public class SmrRouterCache<T> {
 
-    private List<SmrRouterWraper<T>> routerList = new ArrayList<>();
+    private HashMap<String, SmrRouterWraper<T>> routerInfoMap = new HashMap<>();
 
-    //保存回调
-    private static HashMap<String,SmrResponseCallBack> callBackList=new HashMap<>();
+    private static HashMap<String, SmrResponseCallBack> callBackList = new HashMap<>();
 
 
-    public static  void saveCallBack(String key,SmrResponseCallBack smrResponse){
-        if(!callBackList.containsKey(key)){
-            callBackList.put(key,smrResponse);
+    public static void saveCallBack(String key, SmrResponseCallBack smrResponse) {
+        if (!callBackList.containsKey(key)) {
+            callBackList.put(key, smrResponse);
         }
     }
 
-    public  static  SmrResponseCallBack getCallBack(String key){
+    public static SmrResponseCallBack getCallBack(String key) {
 
-        if(!callBackList.containsKey(key)){
-            return  null;
+        if (!callBackList.containsKey(key)) {
+            return null;
         }
         return callBackList.get(key);
     }
 
-    public static  void removeCallBack(String key){
-        if(callBackList.containsKey(key)){
+    public static void removeCallBack(String key) {
+        if (callBackList.containsKey(key)) {
             callBackList.remove(key);
         }
     }
 
     public void add(String path, T handler) {
 
-        routerList.add(new SmrRouterWraper(path,handler));
+        routerInfoMap.put(path, new SmrRouterWraper(path, handler));
     }
 
     public T matched(SmrRequestContext smrRequestContext) {
 
-        for (SmrRouterWraper<T> l : routerList) {
-            if (l.matches(smrRequestContext.getUrl())) {
-                return l.handler;
-            }
+        SmrRouterWraper<T> smrRouterWraper = routerInfoMap.get(smrRequestContext.getUrl());
+        if (smrRouterWraper != null) {
+            return smrRouterWraper.handler;
         }
 
         return null;
     }
 
     //路由信息包装类
-    class  SmrRouterWraper<T>{
+    class SmrRouterWraper<T> {
 
         private String path;
         public T handler;
 
-        public SmrRouterWraper(String path, T handler){
-            this.path=path;
-            this.handler=handler;
+        public SmrRouterWraper(String path, T handler) {
+            this.path = path;
+            this.handler = handler;
         }
 
         public boolean matches(String path) {

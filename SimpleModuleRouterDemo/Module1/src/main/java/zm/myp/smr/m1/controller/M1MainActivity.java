@@ -53,7 +53,7 @@ public class M1MainActivity extends AppCompatActivity implements View.OnClickLis
         if(v==btnm2){
 
             //不带回调
-            SmrRequestClient.call(this, "kb51://module2/fun1",
+            SmrRequestClient.build().call(this, "kb51://module2/fun1",
                     new SmrParamstBody().set("p1", "我是Module1传来的数据"));
         }
     }

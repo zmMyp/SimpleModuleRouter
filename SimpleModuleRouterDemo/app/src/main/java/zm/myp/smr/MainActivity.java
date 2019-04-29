@@ -10,6 +10,7 @@ import android.widget.TextView;
 import zm.myp.smr.source.SmrParamstBody;
 import zm.myp.smr.source.SmrRequestClient;
 import zm.myp.smr.source.base.SmrResponseCallBack;
+import zm.myp.smr.source.scheduler.SchedulerType;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -31,11 +32,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         if(v==button){
 
-            SmrRequestClient.call(this, "kb51://module1/fun1",
-                    new SmrParamstBody().set("p1", "我是主壳传来的数据"),
-                    new SmrResponseCallBack() {
+               SmrRequestClient.build().
+                    requestOnThread(SchedulerType.MAIN_THREAD).
+                    responseOnThread(SchedulerType.MAIN_THREAD).
+                    call(this,"kb51://module1/fun1", new SmrParamstBody().set("p1", "我是主壳传来的数据"), new SmrResponseCallBack() {
                         @Override
                         public void response(Object data) throws Exception {
+                            Log.v("smr1","responsethread"+Thread.currentThread().getName());
                             tv1.setText("当前处于主壳页面,module1返回的数据是:"+((SmrParamstBody)data).get("m1"));
                         }
                     });
