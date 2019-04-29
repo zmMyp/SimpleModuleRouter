@@ -1,3 +1,3 @@
 # SimpleModuleRouter
 
-一个简单的模块化路由框架，实现客户端壳和Module,Module和Module之间像客户端和服务端交互一样requet and response
+一个简单的模块化路由框架，实现客户端主壳和Module,Module和Module之间像客户端和服务端交互一样requet and response
