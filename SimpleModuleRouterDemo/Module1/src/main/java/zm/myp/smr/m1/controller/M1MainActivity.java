@@ -7,10 +7,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import zm.myp.smr.m1.R;
-import zm.myp.smr.source.SmrParamstBody;
+import zm.myp.smr.source.SmrParamsBody;
 import zm.myp.smr.source.SmrRequestClient;
 import zm.myp.smr.source.base.SmrRequestContext;
-import zm.myp.smr.source.base.SmrResponseCallBack;
 
 public class M1MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -46,7 +45,7 @@ public class M1MainActivity extends AppCompatActivity implements View.OnClickLis
         if(v==btnm1){
 
             //返回数据给主壳
-            smrRequestContext.responseCall(new SmrParamstBody().set("m1","我是module1返回的数据"));
+            smrRequestContext.responseCall(new SmrParamsBody().set("m1","我是module1返回的数据"));
             finish();
         }
 
@@ -54,7 +53,7 @@ public class M1MainActivity extends AppCompatActivity implements View.OnClickLis
 
             //不带回调
             SmrRequestClient.build().call(this, "kb51://module2/fun1",
-                    new SmrParamstBody().set("p1", "我是Module1传来的数据"));
+                    new SmrParamsBody().set("p1", "我是Module1传来的数据"));
         }
     }
 }

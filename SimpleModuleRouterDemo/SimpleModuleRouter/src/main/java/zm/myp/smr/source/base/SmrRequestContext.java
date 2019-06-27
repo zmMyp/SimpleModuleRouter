@@ -1,13 +1,10 @@
 package zm.myp.smr.source.base;
 
 
-import android.content.Context;
-
 import java.io.Serializable;
-import java.util.Map;
 
 import zm.myp.smr.source.SmrApplication;
-import zm.myp.smr.source.SmrParamstBody;
+import zm.myp.smr.source.SmrParamsBody;
 import zm.myp.smr.source.scheduler.SchedulerType;
 import zm.myp.smr.source.scheduler.Schedulers;
 import zm.myp.smr.source.scheduler.SchedulersResponseRunnable;
@@ -20,7 +17,7 @@ public class SmrRequestContext implements Serializable {
 
     private transient Object requester;
     private String url;
-    private SmrParamstBody params;
+    private SmrParamsBody params;
 
 
     private SchedulerType requestCallOnType; // 请求功能执行的线程
@@ -32,7 +29,7 @@ public class SmrRequestContext implements Serializable {
 
     }
 
-    public SmrRequestContext(Object requester, String url, SmrParamstBody params) {
+    public SmrRequestContext(Object requester, String url, SmrParamsBody params) {
         this.requester = requester;
         this.url = url;
         this.params = params;
@@ -55,11 +52,11 @@ public class SmrRequestContext implements Serializable {
         this.url = url;
     }
 
-    public SmrParamstBody getParams() {
+    public SmrParamsBody getParams() {
         return params;
     }
 
-    public void setParams(SmrParamstBody params) {
+    public void setParams(SmrParamsBody params) {
         this.params = params;
     }
 
@@ -99,7 +96,7 @@ public class SmrRequestContext implements Serializable {
         return call(requester, url, null, null);
     }
 
-    public final SmrRequestContext call(Object requester, String url, SmrParamstBody params) {
+    public final SmrRequestContext call(Object requester, String url, SmrParamsBody params) {
 
         return call(requester, url, params, null);
     }
@@ -109,7 +106,7 @@ public class SmrRequestContext implements Serializable {
         return call(requester, url, null, smrResponse);
     }
 
-    public final SmrRequestContext call(Object requester, String url, SmrParamstBody params, SmrResponseCallBack smrResponse) {
+    public final SmrRequestContext call(Object requester, String url, SmrParamsBody params, SmrResponseCallBack smrResponse) {
 
         //SmrRequestContext smrRequestContext = new SmrRequestContext(requester, url, params);
 

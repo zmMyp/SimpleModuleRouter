@@ -66,7 +66,7 @@ public class SmrApplication {
         SchedulersRequestRunnable schedulersRunnable = new SchedulersRequestRunnable(handler, smrRequestContext);
 
         if (handler != null) {
-            handler.handle(smrRequestContext);
+            //handler.handle(smrRequestContext);
 
             if (smrRequestContext.getRequestCallOnType() == null) {
                 Schedulers.getMainThread().dispatch(schedulersRunnable);

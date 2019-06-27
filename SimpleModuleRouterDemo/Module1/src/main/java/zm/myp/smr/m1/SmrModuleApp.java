@@ -24,7 +24,7 @@ public class SmrModuleApp implements SmrModule {
                 //Log.v("smr1",smrRequestContext.getParams().get("p1").toString());
 
                 //返回数据给调用方
-                //smrRequestContext.responseCall(new SmrParamstBody().set("md1","模块1发回的数据"));
+                //smrRequestContext.responseCall(new SmrParamsBody().set("md1","模块1发回的数据"));
 
                 Navigation.navigateToMain(smrRequestContext);
 
